@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+.main-title {
+  margin-bottom: 20px;
+}
+
+.gallery {
+  max-width: 1440px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.gallery-item {
+  flex-basis: calc((100% - 48px) / 3);
+}
