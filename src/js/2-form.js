@@ -8,6 +8,7 @@ const formData = {
 const form = document.querySelector('.feedback-form');
 const localStorageKey = 'feedback-form-state';
 
+// Завантаження збереженого стану форми
 const savedData = localStorage.getItem(localStorageKey);
 
 if (savedData) {
@@ -24,14 +25,14 @@ form.addEventListener('input', evt => {
   localStorage.setItem(localStorageKey, JSON.stringify(formData));
 });
 
-// -=============== submit ======================
+
 form.addEventListener('submit', evt => {
   evt.preventDefault();
 
   const email = formData.email.trim();
   const message = formData.message.trim();
 
-  // ======= valid ============
+  // ======= valid ===================
   if (email === '' || message === '') {
     alert('Fill please all fields');
     return;
