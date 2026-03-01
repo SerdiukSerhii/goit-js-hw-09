@@ -7,6 +7,7 @@ const formData = {
 
 const form = document.querySelector('.feedback-form');
 const localStorageKey = 'feedback-form-state';
+
 const savedData = localStorage.getItem(localStorageKey);
 
 if (savedData) {
@@ -22,18 +23,19 @@ form.addEventListener('input', evt => {
   localStorage.setItem(localStorageKey, JSON.stringify(formData));
 });
 
+
 form.addEventListener('submit', evt => {
   evt.preventDefault();
 
- const trimmedEmail = formData.email.trim();
- const trimmedMessage = formData.message.trim();
+  formData.email = formData.email.trim();
+  formData.message = formData.message.trim();
 
- if (trimmedEmail === '' || trimmedMessage === '') {
-   alert('Fill please all fields');
-   return;
- }
+  if (formData.email === '' || formData.message === '') {
+    alert('Fill please all fields');
+    return;
+  }
+  console.log(formData);
 
- console.log({ email: trimmedEmail, message: trimmedMessage });
   localStorage.removeItem(localStorageKey);
   form.reset();
   formData.email = '';
