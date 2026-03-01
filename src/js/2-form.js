@@ -18,26 +18,37 @@ if (savedData) {
   form.elements.message.value = formData.message;
 }
 
+// ================== delegation ====================
 form.addEventListener('input', evt => {
   formData[evt.target.name] = evt.target.value;
   localStorage.setItem(localStorageKey, JSON.stringify(formData));
 });
 
-
+// -=============== submit ======================
 form.addEventListener('submit', evt => {
   evt.preventDefault();
 
-  formData.email = formData.email.trim();
-  formData.message = formData.message.trim();
+  const email = formData.email.trim();
+  const message = formData.message.trim();
 
-  if (formData.email === '' || formData.message === '') {
+  // ======= valid ============
+  if (email === '' || message === '') {
     alert('Fill please all fields');
     return;
   }
+
+  //===== оновлення form========
+  formData.email = email;
+  formData.message = message;
+
+  form.elements.email.value = email;
+  form.elements.message.value = message;
+
   console.log(formData);
 
   localStorage.removeItem(localStorageKey);
   form.reset();
+
   formData.email = '';
   formData.message = '';
 });
