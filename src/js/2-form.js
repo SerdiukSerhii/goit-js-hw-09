@@ -18,17 +18,22 @@ if (savedData) {
 }
 
 form.addEventListener('input', evt => {
-  formData[evt.target.name] = evt.target.value.trim();
+  formData[evt.target.name] = evt.target.value;
   localStorage.setItem(localStorageKey, JSON.stringify(formData));
 });
 
 form.addEventListener('submit', evt => {
   evt.preventDefault();
-  if (formData.email === '' || formData.message === '') {
-    alert('Fill please all fields');
-    return;
-  }
-  console.log(formData);
+
+ const trimmedEmail = formData.email.trim();
+ const trimmedMessage = formData.message.trim();
+
+ if (trimmedEmail === '' || trimmedMessage === '') {
+   alert('Fill please all fields');
+   return;
+ }
+
+ console.log({ email: trimmedEmail, message: trimmedMessage });
   localStorage.removeItem(localStorageKey);
   form.reset();
   formData.email = '';
